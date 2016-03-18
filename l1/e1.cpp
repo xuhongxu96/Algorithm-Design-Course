@@ -29,7 +29,7 @@ int main() {
         int d = calc_distance();
         if (min_d == -1 || d < min_d) {
             min_d = d;
-            memcpy(min_p, p, 10);
+            memcpy(min_p, p, sizeof(p));
         }
         for (i = n - 1; i >= 0; --i) {
             if (p[i] < p[i + 1]) {
@@ -40,7 +40,7 @@ int main() {
                         d = calc_distance();
                         if (min_d == -1 || d < min_d) {
                             min_d = d;
-                            memcpy(min_p, p, 10);
+                            memcpy(min_p, p, sizeof(p));
                         }
                         break;
                     }
@@ -50,11 +50,18 @@ int main() {
         }
         if (i == -1) break;
     }
+    if (min_d == -1) {
+        cout << "no answer" << endl;
+        return 0;
+    }
     for (int i = 0; i < n; ++i) {
-        cout << min_p[i] << " ";
+        if (i == n - 1)
+            cout << min_p[i];
+        else
+            cout << min_p[i] << " ";
     }
     cout << endl;
-    cout << min_d << endl;
+    cout << min_d; 
 
     return 0;
 }

@@ -31,5 +31,5 @@ if __name__ == "__main__":
         if min_distance == -1 or min_distance > d:
             min_distance = d
             route = p
-    print(min_distance, route)
+    print(min_distance, list(route))
 
