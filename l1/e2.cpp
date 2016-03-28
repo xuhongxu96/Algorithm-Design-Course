@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <utility>
 using namespace std;
 
 int N;
@@ -25,9 +26,29 @@ void dfs(int x, int y, int i) {
         }
         return;
     }
+
+    // Warnsdorf's Rule
+    pair<int, int> weight[8];
     for (int ii = 0; ii < 8; ++ii) {
         int tx = x + dir[ii][0];
         int ty = y + dir[ii][1];
+        weight[ii].second = ii;
+        if (isIn(tx, ty) && g[tx][ty] == 0) {
+            for (int j = 0; j < 8; ++j) {
+                int ttx = tx + dir[j][0];
+                int tty = ty + dir[j][1];
+                if (ttx != x && tty != y && isIn(ttx, tty) && g[ttx][tty] == 0) {
+                    ++weight[ii].first;
+                }
+            }
+        }
+    }
+    sort(weight, weight + 8);
+
+    for (int ii = 0; ii < 8; ++ii) {
+        int j = weight[ii].second;
+        int tx = x + dir[j][0];
+        int ty = y + dir[j][1];
         if (isIn(tx, ty) && g[tx][ty] == 0) {
             g[tx][ty] = i;
             dfs(tx, ty, i + 1);
