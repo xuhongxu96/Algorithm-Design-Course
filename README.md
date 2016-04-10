@@ -1,7 +1,7 @@
 # Algorithm-Design-Course
 Source code for Algorithm Design Course in Beijing Normal University
 
-Language: CPP, Python
+Language: CPP, Python, Shell...   
 
 ## Lecture 1
 1. Experiment 1 - ETS   
@@ -16,3 +16,11 @@ e3.py - has description output
 4. Experiment 4 - Time Complexity   
 e4.cpp - Sorting Algorithm   
 e4.sh - Test Running Time
+
+## Lecture 2
+1. Experiment 1 - Bisearch   
+e1.cpp - Input an Array and Do Bisearch
+2. Experiment 2 - Matrix Multiplication   
+e2.cpp - Strassen Matrix Multiplication Algorithm
+
+
