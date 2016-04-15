@@ -21,6 +21,9 @@ e4.sh - Test Running Time
 1. Experiment 1 - Bisearch   
 e1.cpp - Input an Array and Do Bisearch
 2. Experiment 2 - Matrix Multiplication   
-e2.cpp - Strassen Matrix Multiplication Algorithm
+e2.cpp - Strassen Matrix Multiplication Algorithm (With Redundant Copy)   
+3. Experiment 3 - kthElement   
+e3.cpp - O(n) kthElement Using Median Partition
+
 
 

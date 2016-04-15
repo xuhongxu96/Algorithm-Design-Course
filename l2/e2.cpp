@@ -20,14 +20,39 @@ private:
             res.get(0, 0) = a.get(0, 0) * b.get(0, 0);
             return res;
         }
-        Matrix c11 = multiply(a.getBlock(0, 0), b.getBlock(0, 0))
-                     + multiply(a.getBlock(0, 1), b.getBlock(1, 0));
-        Matrix c12 = multiply(a.getBlock(0, 0), b.getBlock(0, 1))
-                     + multiply(a.getBlock(0, 1), b.getBlock(1, 1));
-        Matrix c21 = multiply(a.getBlock(1, 0), b.getBlock(0, 0))
-                     + multiply(a.getBlock(1, 1), b.getBlock(1, 0));
-        Matrix c22 = multiply(a.getBlock(1, 0), b.getBlock(0, 1))
-                     + multiply(a.getBlock(1, 1), b.getBlock(1, 1));
+        Matrix A11 = a.getBlock(0, 0);
+        Matrix A21 = a.getBlock(1, 0);
+        Matrix A12 = a.getBlock(0, 1);
+        Matrix A22 = a.getBlock(1, 1);
+        Matrix B11 = b.getBlock(0, 0);
+        Matrix B21 = b.getBlock(1, 0);
+        Matrix B12 = b.getBlock(0, 1);
+        Matrix B22 = b.getBlock(1, 1);
+
+        Matrix M1 = multiply(A11 + A22, B11 + B22);
+                   
+        Matrix M2 = multiply(A21 + A22, B11);
+                   
+        Matrix M3 = multiply(A11, B12 - B22);
+                   
+        Matrix M4 = multiply(A22, B21 - B11);
+                   
+        Matrix M5 = multiply(A11 + A12, B22);
+                   
+        Matrix M6 = multiply(A21 - A11, B11 + B12);
+                   
+        Matrix M7 = multiply(A12 - A22, B21 + B22);
+
+        Matrix c11 = M1 + M4 - M5 + M7;
+        Matrix c12 = M3 + M5;
+        Matrix c21 = M2 + M4;
+        Matrix c22 = M1 - M2 + M3 + M6;
+
+        c11.print();
+        c12.print();
+        c21.print();
+        c22.print();
+                   
         return Matrix(c11, c12, c21, c22);
     }
 
@@ -86,6 +111,17 @@ public:
         for (int i = 0; i < N; ++i) {
             for (int j = 0; j < N; ++j) {
                 res.get(i, j) = get(i, j) + t.get(i, j);
+            }
+        }
+        return res;
+    }
+    Matrix operator -(Matrix t) {
+        if (n != t.n)
+            throw "the size of a and b must be the same;";
+        Matrix res(n);
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                res.get(i, j) = get(i, j) - t.get(i, j);
             }
         }
         return res;
