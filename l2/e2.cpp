@@ -48,10 +48,12 @@ private:
         Matrix c21 = M2 + M4;
         Matrix c22 = M1 - M2 + M3 + M6;
 
+        /*
         c11.print();
         c12.print();
         c21.print();
         c22.print();
+         */
                    
         return Matrix(c11, c12, c21, c22);
     }
